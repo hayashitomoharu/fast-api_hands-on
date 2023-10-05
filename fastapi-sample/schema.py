@@ -71,7 +71,7 @@ async def create(item:Item):
 
 # データの更新
 
-@app.patch("/item/update/{id}",response_model=Item)
+@app.patch("/items/{id}/update",response_model=Item)
 async def update(id:int, item: Item):
     """
         パスパラメーターで変更したい箇所を受け取り、
