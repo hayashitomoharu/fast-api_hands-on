@@ -91,7 +91,7 @@ async def update(id:int, item: Item):
 
 # データの削除
 
-@app.delete("/item/delete/{id}",response_model=Items)
+@app.delete("/items/{id}/delete",response_model=Items)
 async def delete(id:int):
     """
         パスパラメーターで削除したい箇所を受け取り
