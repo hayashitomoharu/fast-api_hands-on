@@ -33,7 +33,7 @@ async def index_departments(db:Session=Depends(get_db)):
 
 
 @app.get("/departments/{departments_id}",response_model=validation.Departments)
-async def index_department(departments_id:int,db:Session=Depends(get_db)):
+async def show_department(departments_id:int,db:Session=Depends(get_db)):
     
     """
         crud_departments.pyの関数でsqlを実行する
@@ -50,7 +50,7 @@ async def index_department(departments_id:int,db:Session=Depends(get_db)):
 
 # insert
 @app.post("/departments",response_model=validation.Departments)
-async def index_department(name:str,db:Session=Depends(get_db)):
+async def create_department(name:str,db:Session=Depends(get_db)):
     """
         crud_departments.pyの関数でsqlを実行する
         POSTで指定したnameでdepartmentsに新たに追加する
@@ -76,7 +76,7 @@ async def index_users(db:Session=Depends(get_db)):
 
 
 @app.get("/users/{users_id}",response_model=validation.Users)
-async def index_user(users_id:int,db:Session=Depends(get_db)):
+async def show_user(users_id:int,db:Session=Depends(get_db)):
     
     """
         crud_users.pyの関数でsqlを実行する
@@ -94,7 +94,7 @@ async def index_user(users_id:int,db:Session=Depends(get_db)):
 
 # insert
 @app.post("/users",response_model=validation.UsersInsert)
-async def index_user(user_name:str, departments_id:int, db:Session=Depends(get_db)):
+async def create_user(user_name:str, departments_id:int, db:Session=Depends(get_db)):
     """
         crud_users.pyの関数でsqlを実行する
         POSTでクエリパラメーターで指定したnameとdepartments_idで新たに追加する
