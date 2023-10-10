@@ -50,7 +50,7 @@ async def get_item(id:int):
 
 # データの挿入
 
-@app.post("/item/append",response_model=Item)
+@app.post("/items/create",response_model=Item)
 async def create(item:Item):
     """
         postをするとsample_dataに追加して送られたものを返す
