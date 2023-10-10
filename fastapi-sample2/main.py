@@ -1,7 +1,7 @@
 from fastapi import FastAPI,Depends,HTTPException
 
 from database_config import SessionLocal
-import crud_departments
+from crud_departments import (get_department, get_departments, insert_department)
 from crud_users import ( get_users, get_user, insert_user )
 from sqlalchemy.orm import Session
 import validation
@@ -28,7 +28,7 @@ async def get_departments(db:Session=Depends(get_db)):
         crud_departments.pyの関数でsqlを実行する
         http://localhost:8000/departments
     """
-    return crud_departments.get_departments(db=db)
+    return get_departments(db=db)
 
 
 
@@ -41,7 +41,7 @@ async def get_department(departments_id:int,db:Session=Depends(get_db)):
         http://localhost:8000/departments/any
     """
     try:
-        result = crud_departments.get_department(id=departments_id,db=db)
+        result = get_department(id=departments_id,db=db)
         if result == None:
             raise HTTPException(status_code=422, detail=f"{departments_id}:Negative values are not accepted")
         return result
@@ -58,7 +58,7 @@ async def insert_department(name:str,db:Session=Depends(get_db)):
         curl -X POST "http://localhost:8000/departments?name=any" -H "accept: application/json"
 
     """
-    return crud_departments.insert_department(name=name,db=db)
+    return insert_department(name=name,db=db)
 
 
 #users
@@ -71,7 +71,7 @@ async def get_users(db:Session=Depends(get_db)):
         crud_users.pyの関数でsqlを実行する
         http://localhost:8000/users
     """
-    return crud_departments.get_departments(db=db)
+    return get_departments(db=db)
 
 
 
@@ -84,7 +84,7 @@ async def get_user(users_id:int,db:Session=Depends(get_db)):
         http://localhost:8000/users/any
     """
     try:
-        result = crud_users.get_user(id=users_id,db=db)
+        result = get_user(id=users_id,db=db)
         if result == None:
             raise HTTPException(status_code=404, detail=f"{users_id}:Negative values are not accepted")
         return result
@@ -102,6 +102,6 @@ async def insert_user(user_name:str, departments_id:int, db:Session=Depends(get_
         curl -X POST "http://localhost:8000/users?user_name=any&departments_id=1" -H "accept: application/json"
 
     """
-    return crud_users.insert_user(user_name=user_name, departments_id=departments_id, db=db)
+    return insert_user(user_name=user_name, departments_id=departments_id, db=db)
 
 
