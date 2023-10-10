@@ -34,7 +34,7 @@ async def get_messages():
     return sample_data
 
 
-@app.get("/items/{id}",response_model=Item)
+@app.get("/items/{item_id}",response_model=Item)
 async def get_item(id:int):
     """
         jsonデータからパスパラメーターで要素を指定して返す    
