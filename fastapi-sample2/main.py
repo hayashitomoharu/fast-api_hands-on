@@ -71,7 +71,7 @@ async def get_users(db:Session=Depends(get_db)):
         crud_users.pyの関数でsqlを実行する
         http://localhost:8000/users
     """
-    return get_departments(db=db)
+    return get_users(db=db)
 
 
 
@@ -86,7 +86,7 @@ async def get_user(users_id:int,db:Session=Depends(get_db)):
     try:
         result = get_user(id=users_id,db=db)
         if result == None:
-            raise HTTPException(status_code=404, detail=f"{users_id}:Negative values are not accepted")
+            raise HTTPException(status_code=422, detail=f"{users_id}:Negative values are not accepted")
         return result
     except:
         raise HTTPException(status_code=404,detail= f'{users_id} is 404 not found')

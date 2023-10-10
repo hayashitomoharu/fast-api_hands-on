@@ -3,9 +3,12 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, Integer, String, ForeignKey
 import sqlite3
+
+#環境変数を読み込む
 import os
 from dotenv import load_dotenv
 load_dotenv()
+
 
 # sqliteでの接続を作成
 
