@@ -32,21 +32,21 @@ async def get_departments(db:Session=Depends(get_db)):
 
 
 
-@app.get("/departments/{id}",response_model=validation.Departments)
-async def get_department(id:int,db:Session=Depends(get_db)):
+@app.get("/departments/{departments_id}",response_model=validation.Departments)
+async def get_department(departments_id:int,db:Session=Depends(get_db)):
     
     """
         crud_departments.pyの関数でsqlを実行する
-        パスパラメーターで指定したidを使用してレコードを指定する
+        パスパラメーターで指定したdepartments_idを使用してレコードを指定する
         http://localhost:8000/departments/any
     """
     try:
-        result = crud_departments.get_department(id=id,db=db)
+        result = crud_departments.get_department(id=departments_id,db=db)
         if result == None:
-            raise HTTPException(status_code=422, detail=f"{id}:Negative values are not accepted")
+            raise HTTPException(status_code=422, detail=f"{departments_id}:Negative values are not accepted")
         return result
     except:
-        raise HTTPException(status_code=404,detail= f'{id} is 404 not found')
+        raise HTTPException(status_code=404,detail= f'{departments_id} is 404 not found')
 
 # insert
 @app.post("/departments",response_model=validation.Departments)
@@ -75,21 +75,21 @@ async def get_users(db:Session=Depends(get_db)):
 
 
 
-@app.get("/users/{id}",response_model=validation.Users)
-async def get_user(id:int,db:Session=Depends(get_db)):
+@app.get("/users/{users_id}",response_model=validation.Users)
+async def get_user(users_id:int,db:Session=Depends(get_db)):
     
     """
         crud_users.pyの関数でsqlを実行する
-        パスパラメーターで指定したidを使用してレコードを指定する
+        パスパラメーターで指定したusers_idを使用してレコードを指定する
         http://localhost:8000/users/any
     """
     try:
-        result = crud_users.get_user(id=id,db=db)
+        result = crud_users.get_user(id=users_id,db=db)
         if result == None:
-            raise HTTPException(status_code=404, detail=f"{id}:Negative values are not accepted")
+            raise HTTPException(status_code=404, detail=f"{users_id}:Negative values are not accepted")
         return result
     except:
-        raise HTTPException(status_code=404,detail= f'{id} is 404 not found')
+        raise HTTPException(status_code=404,detail= f'{users_id} is 404 not found')
     
 
 # insert

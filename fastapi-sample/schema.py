@@ -35,7 +35,7 @@ async def get_messages():
 
 
 @app.get("/items/{item_id}",response_model=Item)
-async def get_item(id:int):
+async def get_item(item_id:int):
     """
         jsonデータからパスパラメーターで要素を指定して返す    
     
@@ -45,7 +45,7 @@ async def get_item(id:int):
         http://localhost:8000/item/2
     """
 
-    return sample_data["data"][id]
+    return sample_data["data"][item_id]
 
 
 # データの挿入
@@ -71,8 +71,8 @@ async def create(item:Item):
 
 # データの更新
 
-@app.patch("/items/{id}/update",response_model=Item)
-async def update(id:int, item: Item):
+@app.patch("/items/{item_id}/update",response_model=Item)
+async def update(item_id:int, item: Item):
     """
         パスパラメーターで変更したい箇所を受け取り、
         sample_data変数を更新してその箇所を返す
@@ -85,14 +85,14 @@ async def update(id:int, item: Item):
 
     """
 
-    sample_data["data"][id] = {"Message": item.Message}
+    sample_data["data"][item_id] = {"Message": item.Message}
 
-    return sample_data["data"][id]
+    return sample_data["data"][item_id]
 
 # データの削除
 
-@app.delete("/items/{id}/delete",response_model=Items)
-async def delete(id:int):
+@app.delete("/items/{item_id}/delete",response_model=Items)
+async def delete(item_id:int):
     """
         パスパラメーターで削除したい箇所を受け取り
         削除してsample_data変数を返す
@@ -103,6 +103,6 @@ async def delete(id:int):
 
     """
 
-    sample_data["data"].pop(id)
+    sample_data["data"].pop(item_id)
 
     return sample_data
