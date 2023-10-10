@@ -1,3 +1,4 @@
-fastapi-sample/__pycache__/schema.cpython-311.pyc
-.DS_Store
-fastapi-sample/__pycache__/main.cpython-311.pyc
+*.db
+*.DS_Store
+*.pyc
+*.env
