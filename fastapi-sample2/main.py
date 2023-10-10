@@ -43,7 +43,7 @@ async def get_department(id:int,db:Session=Depends(get_db)):
     try:
         result = crud_departments.get_department(id=id,db=db)
         if result == None:
-            raise HTTPException(status_code=404, detail=f"{id}:Negative values are not accepted")
+            raise HTTPException(status_code=422, detail=f"{id}:Negative values are not accepted")
         return result
     except:
         raise HTTPException(status_code=404,detail= f'{id} is 404 not found')
