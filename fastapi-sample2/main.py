@@ -2,7 +2,7 @@ from fastapi import FastAPI,Depends,HTTPException
 
 from database_config import SessionLocal
 import crud_departments
-import crud_users
+from crud_users import ( get_users, get_user, insert_user )
 from sqlalchemy.orm import Session
 import validation
 from typing import List
